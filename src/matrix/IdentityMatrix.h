@@ -12,6 +12,7 @@ class IdentityMatrix : public Matrix {
 public:
     IdentityMatrix(int size);
 
+private:
     virtual float getAt(int row, int column) const;
 };
 

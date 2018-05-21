@@ -12,8 +12,8 @@
 class DenseMatrix : public Matrix{
 public:
     DenseMatrix(int rows, int cols);
-    virtual float getAt(int row, int column) const ;
 private:
+    virtual float getAt(int row, int column) const ;
     std::vector<std::vector<float>> data;
 };
 

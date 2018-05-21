@@ -11,9 +11,12 @@ class Matrix {
 public:
     Matrix(int rows, int cols);
 
-    virtual float getAt(int row, int column) const = 0;
-
     double operator()(int row, int col) const;
+
+    void print();
+
+protected:
+    virtual float getAt(int row, int column) const = 0;
 
 private:
     int rows;

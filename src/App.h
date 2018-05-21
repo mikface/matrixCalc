@@ -1,4 +1,6 @@
+#include <bits/unique_ptr.h>
 #include "StateEnum.h"
+#include "calc/Calculator.h"
 //
 // Created by Mikuláš on 15. 5. 2018.
 //
@@ -14,7 +16,7 @@ public:
 
 private:
     void renderMainMenu();
-
+    std::unique_ptr<Calculator> calc;
     StateEnum state;
 };
 
