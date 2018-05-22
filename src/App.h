@@ -1,6 +1,8 @@
 #include <bits/unique_ptr.h>
-#include "StateEnum.h"
+#include "config/StateEnum.h"
 #include "calc/Calculator.h"
+#include "calc/InputHandler.h"
+#include "calc/Help.h"
 //
 // Created by Mikuláš on 15. 5. 2018.
 //
@@ -16,6 +18,8 @@ public:
 
 private:
     void renderMainMenu();
+    void switchState();
+    std::unique_ptr<InputHandler> input;
     std::unique_ptr<Calculator> calc;
     StateEnum state;
 };

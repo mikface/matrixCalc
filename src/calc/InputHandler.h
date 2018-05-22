@@ -7,7 +7,10 @@
 
 
 class InputHandler {
-
+public:
+    bool scan();
+private:
+    bool parseCommand(std::string line);
 };
 
 

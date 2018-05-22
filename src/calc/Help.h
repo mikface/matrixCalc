@@ -7,6 +7,7 @@
 
 
 class Help {
+public:
     static void print();
 };
 

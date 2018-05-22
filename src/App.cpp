@@ -3,29 +3,34 @@
 //
 
 #include "App.h"
-#include "matrix/IdentityMatrix.h"
 #include <iostream>
 
 void App::run() {
-    switch (state) {
-        case StateEnum::Main:
-            renderMainMenu();
-            break;
-        default:
-            break;
+    if (input->scan()) {
+        state = StateEnum::Command;
+        switchState();
+    } else {
+        state = StateEnum::Help;
+        switchState();
     }
 }
 
-void App::renderMainMenu() {
-    std::cout << "Welcome";
+void App::switchState() {
+    switch (state) {
+        case StateEnum::Command:
+            break;
+        case StateEnum::Help:
+            Help::print();
+            state = StateEnum::Main;
+            run();
+            break;
+        default:
+            throw std::invalid_argument("Switchstate doesn't exist");
+    }
 }
 
 App::App() : state(StateEnum::Main) {
     calc = std::make_unique<Calculator>();
-//    Calculator *newCalc = new Calculator();
-//    newCalc->saveMatrix("A", std::make_shared<IdentityMatrix>(5));
-//    auto newMatrix = newCalc->findMatrix("A");
-//    newMatrix->print();
-    calc->saveMatrix("A", std::make_shared<IdentityMatrix>(8));
-    calc->findMatrix("A")->print();
+    input = std::make_unique<InputHandler>();
+    std::cout << "Welcome to MATRIX CALCULATOR!" << std::endl;
 }
