@@ -8,11 +8,11 @@
 
 class CommandEnum {
 public:
-    static const std::string SPLIT = "split";
-    static const std::string CALC = "calc";
-    static const std::string MERGE = "merge";
-    static const std::string GEM = "gem";
-    static const std::string SCAN = "scan";
+    static const std::string SPLIT;
+    static const std::string CALC;
+    static const std::string MERGE;
+    static const std::string GEM;
+    static const std::string SCAN;
 };
 
 #endif //MATRIXCALC_COMMANDENUM_H
