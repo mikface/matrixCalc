@@ -9,39 +9,64 @@
 #include <regex>
 #include "InputHandler.h"
 #include "../config/CommandEnum.h"
+#include "../command/ScanCommand.h"
+#include "../command/PrintCommand.h"
 
-bool InputHandler::scan() {
-    std::string line;
-    std::getline(std::cin, line);
-    std::transform(line.begin(), line.end(), line.begin(), ::tolower);
 
-    return parseCommand(line);
+InputHandler::InputHandler(const std::shared_ptr<Calculator> &calcPtr) {
+    calc = std::make_shared<Calculator>((*calcPtr));
 }
 
-bool InputHandler::parseCommand(std::string line) {
+
+StateEnum InputHandler::parseCommand() {
+    std::vector<std::string> tokens = InputHandler::tokenizeLine(true);
+
+    //EMPTY COMMAND, NOTHING HAPPENS
+    if (tokens.empty()) {
+        return StateEnum::Main;
+    }
+    //GET ACTUAL COMMAND
+    std::string command = tokens[0];
+
+    //DELETE ACTUAL COMMAND FROM PARSED ARRAY
+    tokens.erase(tokens.begin());
+
+    //SPECIFIC COMMAND PARSERS
+    if (command == CommandEnum::SCAN) {
+        cmd = std::make_unique<ScanCommand>(tokens, calc);
+    } else if (command == CommandEnum::CALC) {
+
+    } else if (command == CommandEnum::SPLIT) {
+
+    } else if (command == CommandEnum::MERGE) {
+
+    } else if (command == CommandEnum::GEM) {
+
+    } else if (command == CommandEnum::PRINT) {
+        cmd = std::make_unique<PrintCommand>(tokens, calc);
+    } else if (command == CommandEnum::EXIT) {
+        return StateEnum::Exit;
+    } else {
+        return StateEnum::Help;
+    }
+
+    if (cmd->isValid()) {
+        cmd->perform();
+        return StateEnum::Main;
+    }
+
+    return StateEnum::WrongCommand;
+}
+
+std::vector<std::string> InputHandler::tokenizeLine(bool toLower) {
+    std::string line;
+    std::getline(std::cin, line);
+    if (toLower) {
+        std::transform(line.begin(), line.end(), line.begin(), ::tolower);
+    }
     std::istringstream iss(line);
     std::vector<std::string> tokens{std::istream_iterator<std::string>{iss},
                                     std::istream_iterator<std::string>{}};
-
-    std::string command = tokens[0];
-
-    //SPECIFIC COMMAND PARSERS
-    if (command == CommandEnum::SCAN){
-
-    } else if (command == CommandEnum::CALC){
-
-    } else if (command == CommandEnum::SPLIT){
-
-    } else if (command == CommandEnum::MERGE){
-
-    } else if (command == CommandEnum::GEM){
-
-    }
-//
-//    for (auto i: tokens) {
-//        bool contains_non_alpha = !std::regex_match(i, std::regex("^[a-z]+$"));
-//        std::cout << contains_non_alpha << std::endl;
-//    }
-    return false;
+    return tokens;
 }
 

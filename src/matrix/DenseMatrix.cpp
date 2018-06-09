@@ -4,9 +4,11 @@
 
 #include "DenseMatrix.h"
 
-
-DenseMatrix::DenseMatrix(int rows, int cols) : Matrix(rows, cols) {}
-
 float DenseMatrix::getAt(int row, int column) const {
-    return data[row][column];
+    unsigned int position = (unsigned int) row * rows + column;
+    return data.at(position);
+}
+
+DenseMatrix::DenseMatrix(int rows, int cols, const std::vector<float> &dataIn) : Matrix(rows, cols), data(dataIn) {
+
 }

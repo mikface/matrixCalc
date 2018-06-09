@@ -11,10 +11,10 @@
 
 class DenseMatrix : public Matrix{
 public:
-    DenseMatrix(int rows, int cols);
+    DenseMatrix(int rows, int cols, const std::vector<float>& dataIn);
 private:
     virtual float getAt(int row, int column) const ;
-    std::vector<std::vector<float>> data;
+    std::vector<float> data;
 };
 
 

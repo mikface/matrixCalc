@@ -5,8 +5,6 @@
 #ifndef MATRIXCALC_MATRIX_H
 #define MATRIXCALC_MATRIX_H
 
-#include <memory>
-
 class Matrix {
 public:
     Matrix(int rows, int cols);
@@ -18,7 +16,6 @@ public:
 protected:
     virtual float getAt(int row, int column) const = 0;
 
-private:
     int rows;
     int cols;
 };

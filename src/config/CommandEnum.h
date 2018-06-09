@@ -13,6 +13,8 @@ public:
     static const std::string MERGE;
     static const std::string GEM;
     static const std::string SCAN;
+    static const std::string PRINT;
+    static const std::string EXIT;
 };
 
 #endif //MATRIXCALC_COMMANDENUM_H

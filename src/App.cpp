@@ -6,31 +6,28 @@
 #include <iostream>
 
 void App::run() {
-    if (input->scan()) {
-        state = StateEnum::Command;
-        switchState();
-    } else {
-        state = StateEnum::Help;
-        switchState();
-    }
-}
-
-void App::switchState() {
-    switch (state) {
-        case StateEnum::Command:
-            break;
-        case StateEnum::Help:
-            Help::print();
-            state = StateEnum::Main;
-            run();
-            break;
-        default:
-            throw std::invalid_argument("Switchstate doesn't exist");
+    while (1) {
+        switch (state) {
+            case StateEnum::Main:
+                state = input->parseCommand();
+                break;
+            case StateEnum::Help:
+                Help::print();
+                state = StateEnum::Main;
+                break;
+            case StateEnum::WrongCommand:
+                Help::printWrongCommand();
+                state = StateEnum::Main;
+                break;
+            case StateEnum::Exit:
+                std::cout << "It's time to say bye, my precious user <3" << std::endl;
+                return;
+        }
     }
 }
 
 App::App() : state(StateEnum::Main) {
-    calc = std::make_unique<Calculator>();
-    input = std::make_unique<InputHandler>();
+    calc = std::make_shared<Calculator>();
+    input = std::make_unique<InputHandler>(calc);
     std::cout << "Welcome to MATRIX CALCULATOR!" << std::endl;
 }

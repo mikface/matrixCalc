@@ -6,11 +6,23 @@
 #define MATRIXCALC_INPUTHANDLER_H
 
 
+#include <queue>
+#include "../command/Command.h"
+#include "Calculator.h"
+#include "../config/StateEnum.h"
+
 class InputHandler {
 public:
-    bool scan();
+    InputHandler(const std::shared_ptr<Calculator> &calcPtr);
+
+    StateEnum parseCommand();
+
+    static std::vector<std::string> tokenizeLine(bool toLower);
+
 private:
-    bool parseCommand(std::string line);
+
+    std::shared_ptr<Calculator> calc;
+    std::unique_ptr<Command> cmd;
 };
 
 

@@ -9,3 +9,5 @@ const std::string CommandEnum::CALC = "calc";
 const std::string CommandEnum::MERGE = "merge";
 const std::string CommandEnum::GEM = "gem";
 const std::string CommandEnum::SCAN = "scan";
+const std::string CommandEnum::PRINT = "print";
+const std::string CommandEnum::EXIT = "exit";

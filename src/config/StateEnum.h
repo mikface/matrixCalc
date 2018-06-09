@@ -8,10 +8,9 @@
 
 enum class StateEnum {
     Main,
-    Command,
+    Exit,
     Help,
-    HelpMatrix,
-
+    WrongCommand
 };
 
 

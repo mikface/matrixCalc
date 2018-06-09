@@ -6,12 +6,19 @@
 
 void Help::print() {
     std::cout << "Supported commands are:" << std::endl << std::endl;
-    std::cout << "SCAN <new matrix name> <num rows> <num columns>" << std::endl;
+    std::cout << "SCAN <new matrix name> <num rows> <num columns> [-v]" << std::endl;
+    std::cout << "PRINT <matrix name>" << std::endl;
     std::cout << "CALC <new matrix name> = <operation +-* with matrices in database>" << std::endl;
     std::cout
-            << "SPLIT <matrix name> <new matrix width> <new matrix height> [(<starting row>,<starting col>)] <new matrix name>"
+            << "SPLIT <matrix name> <new matrix width> <new matrix height> <new matrix name> [(<starting row>,<starting col>)]"
             << std::endl;
     std::cout << "MERGE <matrix 1> <matrix 2>" << std::endl;
-    std::cout << "GEM <matrix name>" << std::endl << std::endl;
+    std::cout << "GEM <matrix name>" << std::endl;
+    std::cout << "EXIT" << std::endl << std::endl;
     std::cout << "Note: Matrix name can be any unique string" << std::endl << std::endl;
+}
+
+void Help::printWrongCommand() {
+    std::cout << "Invalid command syntax, please try again. For details, type 'help'" << std::endl
+              << std::endl;
 }

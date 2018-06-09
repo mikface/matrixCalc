@@ -9,6 +9,8 @@
 class Help {
 public:
     static void print();
+
+    static void printWrongCommand();
 };
 
 

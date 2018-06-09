@@ -14,13 +14,14 @@
 class App {
 public:
     App();
+
     void run();
 
 private:
     void renderMainMenu();
-    void switchState();
+
     std::unique_ptr<InputHandler> input;
-    std::unique_ptr<Calculator> calc;
+    std::shared_ptr<Calculator> calc;
     StateEnum state;
 };
 
