@@ -13,7 +13,7 @@ public:
     IdentityMatrix(int size);
 
 private:
-    virtual float getAt(int row, int column) const;
+    virtual float getAt(unsigned int row, unsigned int column) const;
 };
 
 

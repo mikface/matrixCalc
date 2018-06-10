@@ -6,7 +6,7 @@
 
 IdentityMatrix::IdentityMatrix(int size) : Matrix(size, size) {}
 
-float IdentityMatrix::getAt(int row, int column) const{
+float IdentityMatrix::getAt(unsigned int row, unsigned int column) const {
     if (row == column) {
         return 1;
     }

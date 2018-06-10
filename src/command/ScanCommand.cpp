@@ -7,7 +7,6 @@
 #include <regex>
 #include "ScanCommand.h"
 #include "../calc/InputHandler.h"
-#include "../matrix/SparseMatrix.h"
 #include "../matrix/DenseMatrix.h"
 
 
@@ -36,51 +35,56 @@ void ScanCommand::sanitize() {
     }
     rows = std::stoi(tokens[1]);
     columns = std::stoi(tokens[2]);
-
+    if (rows < 1 || columns < 1) {
+        std::cout << "Number of rows / columns must be positive integer" << std::endl << std::endl;
+        return;
+    }
     valid = true;
 }
 
 void ScanCommand::perform() {
     loadData();
-    int sparseMemory = nonZeroElemCount * 2 + rows;
+    int sparseMemory = nonZeroElemCount * 3;
     int denseMemory = rows * columns;
 
 
     if (sparseMemory >= denseMemory) {
         newMatrix = std::make_shared<DenseMatrix>(rows, columns, denseData);
     } else {
-        newMatrix = std::make_shared<SparseMatrix>(rows, columns, sparseData, colIndex, rowIndex);
+        newMatrix = std::make_shared<SparseMatrix>(rows, columns, sparseData);
     }
 
     if (calc->saveMatrix(newMatrixName, newMatrix)) {
         std::cout << "Matrix saved, id: " << newMatrixName << std::endl << std::endl;
+    } else {
+        std::cout << "Matrix could not be saved, id: " << newMatrixName << " is already taken." << std::endl
+                  << std::endl;
     }
 
 }
 
 void ScanCommand::loadData() {
-    int columnControl;
+    unsigned int column;
     float floatElem;
-    for (int i = 0; i < rows; ++i) {
-        rowIndex.push_back(nonZeroElemCount);
+    for (unsigned int row = 0; row < rows; ++row) {
         if (verbose) {
-            std::cout << "Please type in matrix column n." << (i + 1) << " and press Enter" << std::endl;
+            std::cout << "Please type in matrix column n." << (row + 1) << " and press Enter" << std::endl;
         }
         auto line = InputHandler::tokenizeLine(false);
 
         //TOO FEW COLUMNS
         while (line.size() < columns) {
-            std::cout << "Row n." << (i + 1) << " error: Too few columns" << std::endl;
+            std::cout << "Row n." << (row + 1) << " error: Too few columns" << std::endl;
             if (verbose) {
-                std::cout << "Please type in matrix column n." << (i + 1) << " and press Enter" << std::endl;
+                std::cout << "Please type in matrix column n." << (row + 1) << " and press Enter" << std::endl;
             }
             line = InputHandler::tokenizeLine(false);
         }
 
-        columnControl = 0;
+        column = 0;
         for (auto elem: line) {
             //TOO MANY COLUMNS, CUTTING INPUT
-            if (columnControl == columns) {
+            if (column == columns) {
                 std::cout << "Too many columns, cutting before element '" << elem << "'" << std::endl
                           << std::endl;
                 break;
@@ -97,11 +101,11 @@ void ScanCommand::loadData() {
 
             denseData.push_back(floatElem);
             if (floatElem != 0) {
-                colIndex.push_back(columnControl);
-                sparseData.push_back(floatElem);
+                sparseData[row].emplace(column, floatElem);
+
                 nonZeroElemCount++;
             }
-            columnControl++;
+            column++;
         }
     }
 }

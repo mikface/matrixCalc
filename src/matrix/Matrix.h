@@ -14,7 +14,7 @@ public:
     void print();
 
 protected:
-    virtual float getAt(int row, int column) const = 0;
+    virtual float getAt(unsigned int row, unsigned int column) const = 0;
 
     int rows;
     int cols;

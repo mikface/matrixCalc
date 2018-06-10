@@ -8,6 +8,7 @@
 #include <vector>
 #include <string>
 #include "Command.h"
+#include "../matrix/SparseMatrix.h"
 
 class ScanCommand : public Command {
 public:
@@ -25,9 +26,7 @@ private:
     bool verbose;
     int nonZeroElemCount;
     std::vector<float> denseData;
-    std::vector<float> sparseData;
-    std::vector<int> colIndex;
-    std::vector<int> rowIndex;
+    std::map<unsigned int,std::map<unsigned int, float>> sparseData;
     std::string newMatrixName;
     std::shared_ptr<Matrix> newMatrix;
 };

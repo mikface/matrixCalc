@@ -6,20 +6,17 @@
 #define MATRIXCALC_SPARSEMATRIX_H
 
 
-#include <vector>
+#include <map>
 #include "Matrix.h"
 
 class SparseMatrix : public Matrix {
 public:
-    SparseMatrix(int rows, int cols, const std::vector<float> &data, const std::vector<int> &colIndex,
-                 const std::vector<int> &rowIndex);
+    SparseMatrix(int rows, int cols, const std::map<unsigned int,std::map<unsigned int, float>> &data);
 
 private:
-    virtual float getAt(int row, int column) const;
+    virtual float getAt(unsigned int row, unsigned int column) const;
 
-    std::vector<float> data;
-    std::vector<int> colIndex;
-    std::vector<int> rowIndex;
+    std::map<unsigned int,std::map<unsigned int, float>> data;
 };
 
 

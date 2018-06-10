@@ -4,8 +4,8 @@
 
 #include "DenseMatrix.h"
 
-float DenseMatrix::getAt(int row, int column) const {
-    unsigned int position = (unsigned int) row * rows + column;
+float DenseMatrix::getAt(unsigned int row, unsigned int column) const {
+    unsigned int position = row * rows + column;
     return data.at(position);
 }
 

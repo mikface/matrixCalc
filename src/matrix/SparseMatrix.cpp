@@ -5,11 +5,18 @@
 #include "SparseMatrix.h"
 
 
-SparseMatrix::SparseMatrix(int rows, int cols, const std::vector<float> &dataIn, const std::vector<int> &colIndexIn,
-                           const std::vector<int> &rowIndexIn) : Matrix(rows, cols), data(dataIn),
-                                                                 colIndex(colIndexIn), rowIndex(rowIndexIn) {
+SparseMatrix::SparseMatrix(int rows, int cols, const std::map<unsigned int, std::map<unsigned int, float>> &dataIn)
+        : Matrix(rows, cols),
+          data(dataIn) {
 }
 
-float SparseMatrix::getAt(int row, int column) const {
-    return 0;
+float SparseMatrix::getAt(unsigned int row, unsigned int column) const {
+    float element;
+    try {
+        element = data.at(row).at(column);
+    } catch (std::exception e) {
+        return 0;
+    }
+
+    return element;
 }

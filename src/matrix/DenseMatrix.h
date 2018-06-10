@@ -9,11 +9,13 @@
 #include <vector>
 #include "Matrix.h"
 
-class DenseMatrix : public Matrix{
+class DenseMatrix : public Matrix {
 public:
-    DenseMatrix(int rows, int cols, const std::vector<float>& dataIn);
+    DenseMatrix(int rows, int cols, const std::vector<float> &dataIn);
+
 private:
-    virtual float getAt(int row, int column) const ;
+    virtual float getAt(unsigned int row, unsigned int column) const;
+
     std::vector<float> data;
 };
 

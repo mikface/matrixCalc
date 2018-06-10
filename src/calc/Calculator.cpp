@@ -16,7 +16,6 @@ std::shared_ptr<Matrix> Calculator::findMatrix(std::string id) {
     return nullptr;
 }
 
-bool Calculator::saveMatrix(std::string id, const std::shared_ptr<Matrix>& newMatrix) {
-    storage.emplace(id, newMatrix);
-    return true;
+bool Calculator::saveMatrix(std::string id, const std::shared_ptr<Matrix> &newMatrix) {
+    return storage.emplace(id, newMatrix).second;
 }
