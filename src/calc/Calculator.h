@@ -20,6 +20,8 @@ public:
 
     std::shared_ptr<Matrix> findMatrix(std::string id, bool displayError);
 
+    void deleteMatrix(std::string id, bool displayError);
+
     static std::shared_ptr<Matrix> constructMatrix(unsigned int rows, unsigned int columns, std::vector<float> data);
 
 private:

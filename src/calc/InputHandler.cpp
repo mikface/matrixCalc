@@ -12,6 +12,7 @@
 #include "../command/ScanCommand.h"
 #include "../command/PrintCommand.h"
 #include "../command/CalcCommand.h"
+#include "../command/TransposeCommand.h"
 
 
 InputHandler::InputHandler(const std::shared_ptr<Calculator> &calcPtr) {
@@ -37,6 +38,8 @@ StateEnum InputHandler::parseCommand() {
         cmd = std::make_unique<ScanCommand>(tokens, calc);
     } else if (command == CommandEnum::CALC) {
         cmd = std::make_unique<CalcCommand>(tokens, calc);
+    } else if (command == CommandEnum::TRANSPOSE) {
+        cmd = std::make_unique<TransposeCommand>(tokens, calc);
     } else if (command == CommandEnum::SPLIT) {
 
     } else if (command == CommandEnum::MERGE) {

@@ -58,3 +58,14 @@ std::shared_ptr<Matrix> Calculator::constructMatrix(unsigned int rows, unsigned 
     }
     return newMatrix;
 }
+
+void Calculator::deleteMatrix(std::string id, bool displayError) {
+    auto matrixPointer = storage.find(id);
+    if (matrixPointer != storage.end()) {
+        storage.erase(id);
+        return;
+    }
+    if (displayError) {
+        std::cout << "No matrix with id '" << id << "' was found in database." << std::endl << std::endl;
+    }
+}

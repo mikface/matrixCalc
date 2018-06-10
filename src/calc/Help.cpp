@@ -9,6 +9,7 @@ void Help::print() {
     std::cout << "SCAN <new matrix name> <num rows> <num columns> [-v]" << std::endl;
     std::cout << "PRINT <matrix name>" << std::endl;
     std::cout << "CALC <new matrix name> = <matrix 1 name> <operation *+-> <matrix 2 name>" << std::endl;
+    std::cout << "TRANSPOSE <matrix name> [<new matrix name>]" << std::endl;
     std::cout
             << "SPLIT <matrix name> <new matrix width> <new matrix height> <new matrix name> [(<starting row>,<starting col>)]"
             << std::endl;

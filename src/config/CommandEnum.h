@@ -14,6 +14,8 @@ public:
     static const std::string GEM;
     static const std::string SCAN;
     static const std::string PRINT;
+//    static const std::string DELETE;
+    static const std::string TRANSPOSE;
     static const std::string EXIT;
 };
 
