@@ -7,11 +7,10 @@
 #include <regex>
 #include "ScanCommand.h"
 #include "../calc/InputHandler.h"
-#include "../matrix/DenseMatrix.h"
 
 
 ScanCommand::ScanCommand(const std::vector<std::string> &tokens, const std::shared_ptr<Calculator> &calc) : Command(
-        tokens, calc), verbose(false), nonZeroElemCount(0) {
+        tokens, calc), verbose(false) {
     sanitize();
 }
 
@@ -33,10 +32,18 @@ void ScanCommand::sanitize() {
     if (!checkRows || !checkColumns) {
         return;
     }
-    rows = std::stoi(tokens[1]);
-    columns = std::stoi(tokens[2]);
+    rows = (unsigned int) std::stoi(tokens[1]);
+    columns = (unsigned int) std::stoi(tokens[2]);
     if (rows < 1 || columns < 1) {
         std::cout << "Number of rows / columns must be positive integer" << std::endl << std::endl;
+        showSyntaxError = false;
+        return;
+    }
+
+    if (calc->findMatrix(newMatrixName, false) != nullptr) {
+        std::cout << "Matrix can not be scanned, id: " << newMatrixName << " is already taken." << std::endl
+                  << std::endl;
+        showSyntaxError = false;
         return;
     }
     valid = true;
@@ -44,23 +51,9 @@ void ScanCommand::sanitize() {
 
 void ScanCommand::perform() {
     loadData();
-    int sparseMemory = nonZeroElemCount * 3;
-    int denseMemory = rows * columns;
+    newMatrix = Calculator::constructMatrix(rows, columns, data);
 
-
-    if (sparseMemory >= denseMemory) {
-        newMatrix = std::make_shared<DenseMatrix>(rows, columns, denseData);
-    } else {
-        newMatrix = std::make_shared<SparseMatrix>(rows, columns, sparseData);
-    }
-
-    if (calc->saveMatrix(newMatrixName, newMatrix)) {
-        std::cout << "Matrix saved, id: " << newMatrixName << std::endl << std::endl;
-    } else {
-        std::cout << "Matrix could not be saved, id: " << newMatrixName << " is already taken." << std::endl
-                  << std::endl;
-    }
-
+    calc->saveMatrix(newMatrixName, newMatrix);
 }
 
 void ScanCommand::loadData() {
@@ -99,12 +92,7 @@ void ScanCommand::loadData() {
                 return;
             }
 
-            denseData.push_back(floatElem);
-            if (floatElem != 0) {
-                sparseData[row].emplace(column, floatElem);
-
-                nonZeroElemCount++;
-            }
+            data.push_back(floatElem);
             column++;
         }
     }

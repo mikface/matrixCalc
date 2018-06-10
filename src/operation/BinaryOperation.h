@@ -12,7 +12,7 @@ class BinaryOperation : public Operation {
 public:
     BinaryOperation(std::shared_ptr<Matrix> lhs, std::shared_ptr<Matrix> rhs);
 
-private:
+protected:
     std::shared_ptr<Matrix> rhs;
 };
 

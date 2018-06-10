@@ -11,7 +11,7 @@
 
 class DenseMatrix : public Matrix {
 public:
-    DenseMatrix(int rows, int cols, const std::vector<float> &dataIn);
+    DenseMatrix(unsigned int rows, unsigned int cols, const std::vector<float> &dataIn);
 
 private:
     virtual float getAt(unsigned int row, unsigned int column) const;

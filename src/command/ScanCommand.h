@@ -21,12 +21,10 @@ private:
 
     void loadData();
 
-    int rows;
-    int columns;
+    unsigned int rows;
+    unsigned int columns;
     bool verbose;
-    int nonZeroElemCount;
-    std::vector<float> denseData;
-    std::map<unsigned int,std::map<unsigned int, float>> sparseData;
+    std::vector<float> data;
     std::string newMatrixName;
     std::shared_ptr<Matrix> newMatrix;
 };

@@ -7,17 +7,21 @@
 
 class Matrix {
 public:
-    Matrix(int rows, int cols);
+    Matrix(unsigned int rows, unsigned int cols);
 
-    double operator()(int row, int col) const;
+    float operator()(unsigned int row, unsigned int col) const;
 
     void print();
+
+    unsigned int getRows() const;
+
+    unsigned int getColumns() const;
 
 protected:
     virtual float getAt(unsigned int row, unsigned int column) const = 0;
 
-    int rows;
-    int cols;
+    unsigned int rows;
+    unsigned int cols;
 };
 
 

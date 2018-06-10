@@ -20,9 +20,8 @@ void PrintCommand::sanitize() {
 }
 
 void PrintCommand::perform() {
-    std::shared_ptr<Matrix> found = calc->findMatrix(matrixID);
+    std::shared_ptr<Matrix> found = calc->findMatrix(matrixID, true);
     if (found == nullptr) {
-        std::cout << "No matrix with id '" << matrixID << "' was found in database." << std::endl << std::endl;
         return;
     }
     found->print();

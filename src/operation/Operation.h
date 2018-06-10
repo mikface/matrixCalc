@@ -6,6 +6,7 @@
 #define MATRIXCALC_OPERATION_H
 
 #include <memory>
+#include <vector>
 #include "../matrix/Matrix.h"
 
 
@@ -13,8 +14,13 @@ class Operation {
 public:
     Operation(std::shared_ptr<Matrix> lhs);
 
-private:
+    virtual std::shared_ptr<Matrix> perform() = 0;
+
+protected:
     std::shared_ptr<Matrix> lhs;
+    unsigned int newMatrixRows;
+    unsigned int newMatrixColumns;
+    std::vector<float> newMatrixData;
 };
 
 

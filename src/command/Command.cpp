@@ -9,9 +9,14 @@ Command::Command(const std::vector<std::string> &commandTokens, const std::share
     calc = calculator;
     tokens = commandTokens;
     valid = false;
+    showSyntaxError = true;
 }
 
-bool Command::isValid() {
+bool Command::isValid() const {
     return valid;
+}
+
+bool Command::syntaxError() const {
+    return showSyntaxError;
 }
 

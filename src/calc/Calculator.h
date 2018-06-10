@@ -9,15 +9,18 @@
 #include <map>
 #include <string>
 #include <memory>
+#include <vector>
 #include "../matrix/Matrix.h"
 
 class Calculator {
 public:
     Calculator();
 
-    bool saveMatrix(std::string id, const std::shared_ptr<Matrix> &newMatrix);
+    void saveMatrix(std::string id, const std::shared_ptr<Matrix> &newMatrix);
 
-    std::shared_ptr<Matrix> findMatrix(std::string id);
+    std::shared_ptr<Matrix> findMatrix(std::string id, bool displayError);
+
+    static std::shared_ptr<Matrix> constructMatrix(unsigned int rows, unsigned int columns, std::vector<float> data);
 
 private:
     std::map<std::string, std::shared_ptr<Matrix>> storage;

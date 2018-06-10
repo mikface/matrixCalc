@@ -17,12 +17,14 @@ public:
 
     virtual void perform() = 0;
 
-    bool isValid();
+    bool isValid() const;
+    bool syntaxError() const;
 
 protected:
     virtual void sanitize() = 0;
 
     bool valid;
+    bool showSyntaxError;
     std::shared_ptr<Calculator> calc;
     std::vector<std::string> tokens;
 };

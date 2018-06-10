@@ -11,6 +11,7 @@
 #include "../config/CommandEnum.h"
 #include "../command/ScanCommand.h"
 #include "../command/PrintCommand.h"
+#include "../command/CalcCommand.h"
 
 
 InputHandler::InputHandler(const std::shared_ptr<Calculator> &calcPtr) {
@@ -35,7 +36,7 @@ StateEnum InputHandler::parseCommand() {
     if (command == CommandEnum::SCAN) {
         cmd = std::make_unique<ScanCommand>(tokens, calc);
     } else if (command == CommandEnum::CALC) {
-
+        cmd = std::make_unique<CalcCommand>(tokens, calc);
     } else if (command == CommandEnum::SPLIT) {
 
     } else if (command == CommandEnum::MERGE) {
@@ -55,7 +56,7 @@ StateEnum InputHandler::parseCommand() {
         return StateEnum::Main;
     }
 
-    return StateEnum::WrongCommand;
+    return cmd->syntaxError() ? StateEnum::WrongCommand : StateEnum::Main;
 }
 
 std::vector<std::string> InputHandler::tokenizeLine(bool toLower) {
