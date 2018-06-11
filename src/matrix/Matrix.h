@@ -17,11 +17,16 @@ public:
 
     unsigned int getColumns() const;
 
+    void setDeterminant(float det);
+
+    float getDeterminant() const;
+
 protected:
     virtual float getAt(unsigned int row, unsigned int column) const = 0;
 
     unsigned int rows;
     unsigned int cols;
+    float determinant;
 };
 
 

@@ -12,4 +12,5 @@ const std::string CommandEnum::SCAN = "scan";
 const std::string CommandEnum::PRINT = "print";
 //const std::string CommandEnum::DELETE = "delete";
 const std::string CommandEnum::TRANSPOSE = "transpose";
+const std::string CommandEnum::DETERMINANT = "det";
 const std::string CommandEnum::EXIT = "exit";

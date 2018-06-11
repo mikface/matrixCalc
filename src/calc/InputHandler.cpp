@@ -13,6 +13,10 @@
 #include "../command/PrintCommand.h"
 #include "../command/CalcCommand.h"
 #include "../command/TransposeCommand.h"
+#include "../command/MergeCommand.h"
+#include "../command/SplitCommand.h"
+#include "../command/GaussCommand.h"
+#include "../command/DeterminantCommand.h"
 
 
 InputHandler::InputHandler(const std::shared_ptr<Calculator> &calcPtr) {
@@ -41,11 +45,13 @@ StateEnum InputHandler::parseCommand() {
     } else if (command == CommandEnum::TRANSPOSE) {
         cmd = std::make_unique<TransposeCommand>(tokens, calc);
     } else if (command == CommandEnum::SPLIT) {
-
+        cmd = std::make_unique<SplitCommand>(tokens, calc);
     } else if (command == CommandEnum::MERGE) {
-
+        cmd = std::make_unique<MergeCommand>(tokens, calc);
     } else if (command == CommandEnum::GEM) {
-
+        cmd = std::make_unique<GaussCommand>(tokens, calc);
+    } else if (command == CommandEnum::DETERMINANT) {
+        cmd = std::make_unique<DeterminantCommand>(tokens, calc);
     } else if (command == CommandEnum::PRINT) {
         cmd = std::make_unique<PrintCommand>(tokens, calc);
     } else if (command == CommandEnum::EXIT) {

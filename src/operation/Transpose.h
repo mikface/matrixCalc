@@ -12,7 +12,6 @@ class Transpose : public Operation{
 public:
     Transpose(const std::shared_ptr<Matrix> &lhs);
 
-
     virtual std::shared_ptr<Matrix> perform() override ;
 
 };

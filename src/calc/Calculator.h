@@ -22,7 +22,8 @@ public:
 
     void deleteMatrix(std::string id, bool displayError);
 
-    static std::shared_ptr<Matrix> constructMatrix(unsigned int rows, unsigned int columns, std::vector<float> data);
+    static std::shared_ptr<Matrix>
+    constructMatrix(unsigned int rows, unsigned int columns, std::vector<float> data, bool isGauss);
 
 private:
     std::map<std::string, std::shared_ptr<Matrix>> storage;

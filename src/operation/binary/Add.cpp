@@ -16,6 +16,6 @@ std::shared_ptr<Matrix> Add::perform() {
             newMatrixData.push_back((*lhs)(row, column) + (*rhs)(row, column));
         }
     }
-    auto result = Calculator::constructMatrix(newMatrixRows, newMatrixColumns, newMatrixData);
+    auto result = Calculator::constructMatrix(newMatrixRows, newMatrixColumns, newMatrixData, false);
     return result;
 }

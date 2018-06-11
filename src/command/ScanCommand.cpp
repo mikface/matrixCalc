@@ -35,7 +35,7 @@ void ScanCommand::sanitize() {
     rows = (unsigned int) std::stoi(tokens[1]);
     columns = (unsigned int) std::stoi(tokens[2]);
     if (rows < 1 || columns < 1) {
-        std::cout << "Number of rows / columns must be positive integer" << std::endl << std::endl;
+        std::cout << "Number of rows / columns must be greater or equal to 1" << std::endl << std::endl;
         showSyntaxError = false;
         return;
     }
@@ -51,7 +51,7 @@ void ScanCommand::sanitize() {
 
 void ScanCommand::perform() {
     loadData();
-    newMatrix = Calculator::constructMatrix(rows, columns, data);
+    newMatrix = Calculator::constructMatrix(rows, columns, data, false);
 
     calc->saveMatrix(newMatrixName, newMatrix);
 }
