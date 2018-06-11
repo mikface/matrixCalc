@@ -1,0 +1,34 @@
+SCAN x1 2 3
+1 2 3
+4 5 6
+
+SCAN y1 2 3
+1 2 3
+4 5 6
+
+SCAN z1 3 2
+1 2
+3 4
+5 6
+
+CALC res11 = x1 + y1
+
+CALC res12 = x1 - y1
+
+CALC res13 = x1 * z1
+
+PRINT res11
+PRINT res12
+PRINT res13
+
+CALC fault11 = x1 * y1
+
+CALC fault12 = x1 + z1
+
+MERGE x1 y1 => res14
+PRINT res14
+
+SPLIT res14 3 3 => res15 starting 1 1
+PRINT res15
+
+

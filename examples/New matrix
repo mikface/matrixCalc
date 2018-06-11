@@ -1,0 +1,15 @@
+SCAN x0 2 3
+1 2 3
+4 5 6
+
+PRINT x0
+
+SCAN y0 2 3 -v
+1 2 3
+4 5 6
+
+PRINT y0
+
+SCAN x0 3 3
+
+SCAN z0 0 0
