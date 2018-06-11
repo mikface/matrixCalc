@@ -14,7 +14,12 @@ Gauss::Gauss(const std::shared_ptr<Matrix> &lhs) : Operation(lhs) {
 
 std::shared_ptr<Matrix> Gauss::perform() {
     unsigned int rows = newMatrixRows, cols = newMatrixColumns, i, j, k;
-    float a[rows][cols];
+    float **a;
+    a = new float *[rows];
+    for (i = 0; i < rows; i++) {
+        a[i] = new float[cols];
+    }
+
     for (i = 0; i < rows; i++)
         for (j = 0; j < cols; j++)
             a[i][j] = (*lhs)(i, j);    //input the elements of matrix
@@ -38,6 +43,11 @@ std::shared_ptr<Matrix> Gauss::perform() {
         for (j = 0; j < cols; j++) {
             newMatrixData.push_back((float) (std::round(a[i][j] * 1000.0) / 1000.0));
         }
+
+    for (i = 0; i < rows; i++) {
+        delete[] a[i];
+    }
+    delete[]a;
     auto result = Calculator::constructMatrix(newMatrixRows, newMatrixColumns, newMatrixData, true);
     return result;
 }
