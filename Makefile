@@ -4,7 +4,7 @@
 ## Variables
 
 CXX = g++
-CXXFLAGS = -Wall -pedantic -Wno-long-long -O0 -ggdb -std=c++11 -Werror
+CXXFLAGS = -Wall -pedantic -Wno-long-long -O0 -ggdb -std=c++14 -Werror
 EXECUTABLE = veselmik
 SOURCES := $(wildcard src/*.cpp src/*/*.cpp src/*/*/*.cpp)
 CHECK = valgrind
