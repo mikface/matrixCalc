@@ -22,12 +22,12 @@ all: doc compile
 compile: $(SOURCES:.cpp=.o)
 	@echo "compiling with flags $(CXXFLAGS) "
 	@$(CXX) $(CXXFLAGS) $(SOURCES:.cpp=.o) -o $(EXECUTABLE) 
-	@echo "COMPILE OK"
+	@echo "compile finished"
 
 run: compile
 	@echo "starting executable"
 	@./$(EXECUTABLE)
-	@echo "RUN OK"
+	@echo "run finished"
 
 clean:
 	@echo "removing object files"
@@ -38,12 +38,12 @@ clean:
 	@rm -f $(EXECUTABLE)
 	@echo "removing documentation files"
 	@rm -rf -- doc/
-	@echo "CLEAN OK"
+	@echo "clean finished"
 
 doc:
 	@echo "generating documentation"
 	doxygen Doxyfile
-	@echo "DOC OK"
+	@echo "finished"
 
 check: CXXFLAGS += -g -O2
 check: clean compile
