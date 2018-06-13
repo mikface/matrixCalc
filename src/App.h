@@ -1,4 +1,4 @@
-#include <bits/unique_ptr.h>
+#include <memory>
 #include "config/StateEnum.h"
 #include "calc/Calculator.h"
 #include "calc/InputHandler.h"
@@ -13,15 +13,30 @@
 
 class App {
 public:
+    /**
+     * Main app constructor, sets app state to Main, inits InputHandler and Calculator storage
+     */
     App();
 
+    /**
+     * Main run function, checks state and controls whole app
+     */
     void run();
 
 private:
-    void renderMainMenu();
-
+    /**
+     * Input handler
+     */
     std::unique_ptr<InputHandler> input;
+
+    /**
+     * Calculator storage
+     */
     std::shared_ptr<Calculator> calc;
+
+    /**
+     * Current state of app
+     */
     StateEnum state;
 };
 
