@@ -51,7 +51,7 @@ void ScanCommand::sanitize() {
 
 void ScanCommand::perform() {
     loadData();
-    newMatrix = Calculator::constructMatrix(rows, columns, data, false);
+    newMatrix = Matrix::constructMatrix(rows, columns, data);
 
     calc->saveMatrix(newMatrixName, newMatrix);
 }

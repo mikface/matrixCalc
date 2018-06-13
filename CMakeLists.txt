@@ -1,6 +1,7 @@
-cmake_minimum_required(VERSION 3.6.3)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.6.3)
 project(MatrixCalc)
 
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 set(CMAKE_CXX_STANDARD 14)
 
 set(SOURCE_FILES src/main.cpp src/App.cpp src/calc/Help.cpp src/config/StateEnum.h src/calc/InputHandler.cpp src/calc/InputHandler.h src/matrix/Matrix.cpp src/matrix/Matrix.h src/matrix/IdentityMatrix.cpp src/matrix/IdentityMatrix.h src/matrix/DenseMatrix.cpp src/matrix/DenseMatrix.h src/matrix/SparseMatrix.cpp src/matrix/SparseMatrix.h src/operation/Operation.cpp src/operation/Operation.h src/operation/BinaryOperation.cpp src/operation/BinaryOperation.h src/calc/Calculator.cpp src/calc/Calculator.h src/config/CommandEnum.h src/command/Command.cpp src/command/Command.h src/config/CommandEnum.cpp src/command/ScanCommand.cpp src/command/ScanCommand.h src/command/PrintCommand.cpp src/command/PrintCommand.h src/command/CalcCommand.cpp src/command/CalcCommand.h src/operation/binary/Add.cpp src/operation/binary/Add.h src/operation/binary/Subtract.cpp src/operation/binary/Subtract.h src/operation/binary/Multiply.cpp src/operation/binary/Multiply.h src/command/TransposeCommand.cpp src/command/TransposeCommand.h src/operation/Transpose.cpp src/operation/Transpose.h src/command/MergeCommand.cpp src/command/MergeCommand.h src/operation/binary/Merge.cpp src/operation/binary/Merge.h src/command/SplitCommand.cpp src/command/SplitCommand.h src/operation/Split.cpp src/operation/Split.h src/operation/Gauss.cpp src/operation/Gauss.h src/command/GaussCommand.cpp src/command/GaussCommand.h src/command/DeterminantCommand.cpp src/command/DeterminantCommand.h)

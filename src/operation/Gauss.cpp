@@ -14,40 +14,56 @@ Gauss::Gauss(const std::shared_ptr<Matrix> &lhs) : Operation(lhs) {
 
 std::shared_ptr<Matrix> Gauss::perform() {
     unsigned int rows = newMatrixRows, cols = newMatrixColumns, i, j, k;
+    bool negativeDeterminant = false;
     float **a;
     a = new float *[rows];
     for (i = 0; i < rows; i++) {
         a[i] = new float[cols];
     }
 
-    for (i = 0; i < rows; i++)
-        for (j = 0; j < cols; j++)
-            a[i][j] = (*lhs)(i, j);    //input the elements of matrix
+    //input the elements of matrix
+    for (i = 0; i < rows; i++) {
+        for (j = 0; j < cols; j++) {
+            a[i][j] = (*lhs)(i, j);
+        }
+    }
 
-    for (i = 0; i < rows; i++)                    //Pivotisation
-        for (k = i + 1; k < rows; k++)
-            if (std::abs(a[i][i]) < std::abs(a[k][i]))
+    //Pivotisation
+    for (i = 0; i < rows; i++) {
+        for (k = i + 1; k < rows; k++) {
+            if (std::abs(a[i][i]) > std::abs(a[k][i])) {
+                negativeDeterminant = !negativeDeterminant;
                 for (j = 0; j < cols; j++) {
                     float temp = a[i][j];
                     a[i][j] = a[k][j];
                     a[k][j] = temp;
                 }
-    for (i = 0; i < rows - 1; i++)            //loop to perform the gauss elimination
+            }
+        }
+    }
+
+    //loop to perform the gauss elimination
+    for (i = 0; i < rows - 1; i++) {
         for (k = i + 1; k < rows; k++) {
             float t = a[k][i] / a[i][i];
             for (j = 0; j < cols; j++)
-                a[k][j] = a[k][j] - t *
-                                    a[i][j];    //make the elements below the pivot elements equal to zero or eliminate the variables
+                //make the elements below the pivot elements equal to zero or eliminate the variables
+                a[k][j] = a[k][j] - t * a[i][j];
         }
-    for (i = 0; i < rows; i++)
+    }
+
+    for (i = 0; i < rows; i++) {
         for (j = 0; j < cols; j++) {
             newMatrixData.push_back((float) (std::round(a[i][j] * 1000.0) / 1000.0));
         }
+    }
 
+    //CLEANING HELP MATRIX
     for (i = 0; i < rows; i++) {
         delete[] a[i];
     }
     delete[]a;
-    auto result = Calculator::constructMatrix(newMatrixRows, newMatrixColumns, newMatrixData, true);
+
+    auto result = Matrix::constructMatrix(newMatrixRows, newMatrixColumns, newMatrixData, true, negativeDeterminant);
     return result;
 }

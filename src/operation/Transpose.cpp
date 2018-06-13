@@ -16,6 +16,6 @@ std::shared_ptr<Matrix> Transpose::perform() {
             newMatrixData.push_back((*lhs)(row, column));
         }
     }
-    auto result = Calculator::constructMatrix(newMatrixRows, newMatrixColumns, newMatrixData, false);
+    auto result = Matrix::constructMatrix(newMatrixRows, newMatrixColumns, newMatrixData);
     return result;
 }

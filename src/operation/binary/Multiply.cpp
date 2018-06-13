@@ -24,6 +24,6 @@ std::shared_ptr<Matrix> Multiply::perform() {
             newMatrixData.push_back(val);
         }
     }
-    auto result = Calculator::constructMatrix(newMatrixRows, newMatrixColumns, newMatrixData, false);
+    auto result = Matrix::constructMatrix(newMatrixRows, newMatrixColumns, newMatrixData);
     return result;
 }

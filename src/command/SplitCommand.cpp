@@ -37,13 +37,15 @@ void SplitCommand::sanitize() {
         if (!checkFromColumns || !checkFromRows || tokens[5] != "starting")
             return;
 
-        fromRow = (unsigned int) std::stoi(tokens[6]);
-        fromColumn = (unsigned int) std::stoi(tokens[7]);
-        if (fromRow < 0 || fromColumn < 0) {
+        int ifromRow = std::stoi(tokens[6]);
+        int ifromColumn = std::stoi(tokens[7]);
+        if (ifromRow < 0 || ifromColumn < 0) {
             std::cout << "Position row / column must be greater or equal to 0" << std::endl << std::endl;
             showSyntaxError = false;
             return;
         }
+        fromRow = (unsigned int) ifromRow;
+        fromColumn = (unsigned int) ifromColumn;
     }
 
     valid = true;

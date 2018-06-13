@@ -18,6 +18,6 @@ std::shared_ptr<Matrix> Subtract::perform() {
             newMatrixData.push_back((*lhs)(row, column) - (*rhs)(row, column));
         }
     }
-    auto result = Calculator::constructMatrix(newMatrixRows, newMatrixColumns, newMatrixData, false);
+    auto result = Matrix::constructMatrix(newMatrixRows, newMatrixColumns, newMatrixData);
     return result;
 }
