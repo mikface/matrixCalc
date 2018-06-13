@@ -36,7 +36,7 @@ private:
     /**
      * Loads matrix data from input and validates them / prints custom errors
      */
-    void loadData();
+    bool loadData();
 
     /**
      * New matrix rows number

@@ -9,7 +9,7 @@
 #include "../calc/InputHandler.h"
 
 
-ScanCommand::ScanCommand(const std::vector <std::string> &tokens, const std::shared_ptr <Calculator> &calc) : Command(
+ScanCommand::ScanCommand(const std::vector<std::string> &tokens, const std::shared_ptr<Calculator> &calc) : Command(
         tokens, calc), verbose(false) {
     sanitize();
 }
@@ -50,12 +50,13 @@ void ScanCommand::sanitize() {
 }
 
 void ScanCommand::perform() {
-    loadData();
+    if (!loadData())
+        return;
     newMatrix = Matrix::constructMatrix(rows, columns, data);
     calc->saveMatrix(newMatrixName, newMatrix);
 }
 
-void ScanCommand::loadData() {
+bool ScanCommand::loadData() {
     unsigned int column;
     float floatElem;
     for (unsigned int row = 0; row < rows; ++row) {
@@ -86,13 +87,17 @@ void ScanCommand::loadData() {
             try {
                 floatElem = std::stof(elem);
             } catch (std::exception e) {
-                std::cout << "Invalid argument passed as Matrix element, only floats accepted" << std::endl
-                          << std::endl;
-                return;
+                std::cout
+                        << "Invalid argument passed as Matrix element, only floats accepted. Start by calling scan again."
+                        << std::endl
+                        << std::endl;
+                return false;
             }
 
             data.push_back(floatElem);
             column++;
         }
     }
+
+    return true;
 }
