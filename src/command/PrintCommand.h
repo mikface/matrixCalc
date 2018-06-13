@@ -10,15 +10,32 @@
 #include <memory>
 #include "Command.h"
 
+/**
+ * Command class used to print matrix
+ */
 class PrintCommand : public Command {
 public:
+    /**
+     * Constructor
+     * @param commandTokens
+     * @param calc
+     */
     PrintCommand(const std::vector<std::string> &commandTokens, const std::shared_ptr<Calculator> &calc);
 
+    /**
+     * @inherit
+     */
     virtual void perform() override;
 
 private:
+    /**
+     * @inherit
+     */
     virtual void sanitize() override;
 
+    /**
+     * ID of matrix to be printed
+     */
     std::string matrixID;
 };
 

@@ -8,17 +8,44 @@
 
 #include "Command.h"
 
-class MergeCommand : public Command{
+/**
+ * Command class used to merge two matrices
+ */
+class MergeCommand : public Command {
 public:
+    /**
+     * Constructor
+     * @param commandTokens
+     * @param calculator
+     */
     MergeCommand(const std::vector<std::string> &commandTokens, const std::shared_ptr<Calculator> &calculator);
+
+    /**
+     * @inherit
+     */
     virtual void perform() override;
 
 private:
-    virtual void sanitize() override;
-    std::shared_ptr<Matrix> lhs;
-    std::shared_ptr<Matrix> rhs;
-    std::shared_ptr<Matrix> result;
 
+    /**
+     * @inherit
+     */
+    virtual void sanitize() override;
+
+    /**
+     * Left hand side matrix pointer
+     */
+    std::shared_ptr<Matrix> lhs;
+
+    /**
+     * Right hand side matrix pointer
+     */
+    std::shared_ptr<Matrix> rhs;
+
+    /**
+     * Result (new) matrix pointer
+     */
+    std::shared_ptr<Matrix> result;
 };
 
 

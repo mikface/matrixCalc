@@ -8,19 +8,57 @@
 
 #include "Command.h"
 
-class SplitCommand : public Command{
+/**
+ * Command class used to split matrix and save only part of it
+ */
+class SplitCommand : public Command {
 public:
+    /**
+     * Constructor
+     * @param commandTokens
+     * @param calculator
+     */
     SplitCommand(const std::vector<std::string> &commandTokens, const std::shared_ptr<Calculator> &calculator);
+
+    /**
+     * @inherit
+     */
     virtual void perform() override;
 
 private:
+    /**
+     * @inherit
+     */
     virtual void sanitize() override;
+
+    /**
+     * Left hand side matrix pointer
+     */
     std::shared_ptr<Matrix> lhs;
-    std::shared_ptr<Matrix> rhs;
+
+    /**
+     * New matrix rows number
+     */
     unsigned int rows;
+
+    /**
+     * New matrix columns number
+     */
     unsigned int columns;
+
+    /**
+     * Old matrix starting row
+     */
     unsigned int fromRow;
+
+    /**
+     * Old matrix starting column
+     */
     unsigned int fromColumn;
+
+    /**
+     * New matrix pointer
+     */
     std::shared_ptr<Matrix> result;
 
 };
