@@ -8,12 +8,21 @@
 
 #include "Operation.h"
 
-class Transpose : public Operation{
+/**
+ * Operation class used to transpose matrix
+ */
+class Transpose : public Operation {
 public:
+    /**
+     * Constructor
+     * @param lhs
+     */
     Transpose(const std::shared_ptr<Matrix> &lhs);
 
-    virtual std::shared_ptr<Matrix> perform() override ;
-
+    /**
+     * @inherit
+     */
+    virtual std::shared_ptr<Matrix> perform() override;
 };
 
 

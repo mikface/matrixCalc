@@ -8,10 +8,22 @@
 
 #include "../BinaryOperation.h"
 
-class Multiply : public BinaryOperation{
+/**
+ * BinaryOperation class used to multiply two matrices
+ */
+class Multiply : public BinaryOperation {
 public:
+    /**
+     * Constructor
+     * @param lhs
+     * @param rhs
+     */
     Multiply(const std::shared_ptr<Matrix> &lhs, const std::shared_ptr<Matrix> &rhs);
-    virtual std::shared_ptr<Matrix> perform() override ;
+
+    /**
+     * @inherit
+     */
+    virtual std::shared_ptr<Matrix> perform() override;
 
 };
 
