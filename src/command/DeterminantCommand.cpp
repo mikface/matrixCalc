@@ -30,6 +30,6 @@ void DeterminantCommand::perform() {
         std::cout << "Not a square Matrix" << std::endl << std::endl;
         return;
     }
-    std::cout << "Determinant for Matrix with id: " << tokens[0] << " = " << det << std::endl
+    std::cout << "Determinant of Matrix with id: " << tokens[0] << " = " << det << std::endl
               << std::endl;
 }

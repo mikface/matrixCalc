@@ -46,9 +46,12 @@ float Matrix::getDeterminant() const {
     throw std::invalid_argument("DETERMINANT NOT SUPPORTED FOR RECT MATRIX");
 }
 
+unsigned int Matrix::getRank() const {
+    return rank;
+}
+
 std::shared_ptr<Matrix>
-Matrix::constructMatrix(unsigned int rows, unsigned int columns, std::vector<float> data, bool isGauss,
-                        bool negativeDeterminant) {
+Matrix::constructMatrix(unsigned int rows, unsigned int columns, const std::vector<float> &data) {
     unsigned int nonZeroElemCount = 0, sparseMemory, denseMemory;
     float elem, determinant = 1.0;
     std::shared_ptr<Matrix> newMatrix = nullptr;
@@ -75,27 +78,81 @@ Matrix::constructMatrix(unsigned int rows, unsigned int columns, std::vector<flo
         newMatrix = std::make_shared<SparseMatrix>(rows, columns, sparseData);
     }
 
+    //MAKING GAUSS MATRIX FOR DETERMINANT AND RANK
+    auto newMatrixGauss = Gauss(newMatrix).perform();
+
+
+
     //DETERMINANT FOR SQUARE MATRIX
-    if (rows == columns && !isGauss) {
-        auto newMatrixGauss = Gauss(newMatrix).perform();
+    if (rows == columns) {
         for (unsigned int row = 0; row < rows; ++row) {
             determinant *= (*newMatrixGauss)(row, row);
         }
-        if (newMatrixGauss->gaussNegativeDeterminant) {
-            determinant *= -1;
-        }
-        newMatrix->determinant = determinant;
-    } else if (rows == columns && isGauss) {
-        //DETERMINANT FOR GAUSS SQUARE MATRIX
-        for (unsigned int row = 0; row < rows; ++row) {
-            determinant *= (*newMatrix)(row, row);
-        }
-        if (negativeDeterminant) {
-            newMatrix->gaussNegativeDeterminant = true;
-        }
-        newMatrix->determinant = determinant;
+        newMatrix->determinant = newMatrixGauss->getDeterminant();
     }
+
+    newMatrix->rank = newMatrixGauss->getRank();
 
 
     return newMatrix;
 }
+
+std::shared_ptr<Matrix>
+Matrix::constructGaussMatrix(unsigned int rows, unsigned int columns, const std::vector<float> &data,
+                             bool negativeDeterminant) {
+    unsigned int nonZeroElemCount = 0, sparseMemory, denseMemory, rank = 0;
+    float elem, determinant = 1.0;
+    std::shared_ptr<Matrix> newMatrix = nullptr;
+    std::map<unsigned int, std::map<unsigned int, float>> sparseData;
+
+    //COUNTING NON ZERO ELEMENTS FOR SPARSE x DENSE decision
+    for (unsigned int row = 0; row < rows; ++row) {
+        for (unsigned int column = 0; column < rows; ++column) {
+            elem = data[row * columns + column];
+            if (elem != 0) {
+                sparseData[row].emplace(column, elem);
+                nonZeroElemCount++;
+            }
+        }
+    }
+    //COUNTING MEMORY TAKEN BY BOTH TYPES
+    sparseMemory = nonZeroElemCount * 3;
+    denseMemory = rows * columns;
+
+    //SPARSE vs DENSE decision point
+    if (sparseMemory >= denseMemory) {
+        newMatrix = std::make_shared<DenseMatrix>(rows, columns, data);
+    } else {
+        newMatrix = std::make_shared<SparseMatrix>(rows, columns, sparseData);
+    }
+
+    //RANK
+    for (unsigned int row = 0; row < rows; ++row) {
+        bool isZeroRow = true;
+        for (unsigned int column = 0; column < columns; column++) {
+            if ((*newMatrix)(row, column) != 0) {
+                isZeroRow = false;
+                break;
+            }
+        }
+        if (!isZeroRow)
+            rank++;
+    }
+
+    //DETERMINANT FOR GAUSS SQUARE MATRIX
+    if (rows == columns) {
+        for (unsigned int row = 0; row < rows; ++row) {
+            determinant *= (*newMatrix)(row, row);
+        }
+        if (negativeDeterminant) {
+            determinant *= -1;
+        }
+        newMatrix->determinant = determinant;
+    }
+
+    newMatrix->rank = rank;
+
+
+    return newMatrix;
+}
+

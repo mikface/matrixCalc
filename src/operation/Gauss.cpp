@@ -15,11 +15,7 @@ Gauss::Gauss(const std::shared_ptr<Matrix> &lhs) : Operation(lhs) {
 std::shared_ptr<Matrix> Gauss::perform() {
     unsigned int rows = newMatrixRows, cols = newMatrixColumns, i, j, k;
     bool negativeDeterminant = false;
-    float **a;
-    a = new float *[rows];
-    for (i = 0; i < rows; i++) {
-        a[i] = new float[cols];
-    }
+    std::vector<std::vector<float>> a(newMatrixRows, std::vector<float>(newMatrixColumns));
 
     //input the elements of matrix
     for (i = 0; i < rows; i++) {
@@ -58,12 +54,6 @@ std::shared_ptr<Matrix> Gauss::perform() {
         }
     }
 
-    //CLEANING HELP MATRIX
-    for (i = 0; i < rows; i++) {
-        delete[] a[i];
-    }
-    delete[]a;
-
-    auto result = Matrix::constructMatrix(newMatrixRows, newMatrixColumns, newMatrixData, true, negativeDeterminant);
+    auto result = Matrix::constructGaussMatrix(newMatrixRows, newMatrixColumns, newMatrixData, negativeDeterminant);
     return result;
 }

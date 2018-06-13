@@ -9,7 +9,7 @@
 #include "../calc/InputHandler.h"
 
 
-ScanCommand::ScanCommand(const std::vector<std::string> &tokens, const std::shared_ptr<Calculator> &calc) : Command(
+ScanCommand::ScanCommand(const std::vector <std::string> &tokens, const std::shared_ptr <Calculator> &calc) : Command(
         tokens, calc), verbose(false) {
     sanitize();
 }
@@ -52,7 +52,6 @@ void ScanCommand::sanitize() {
 void ScanCommand::perform() {
     loadData();
     newMatrix = Matrix::constructMatrix(rows, columns, data);
-
     calc->saveMatrix(newMatrixName, newMatrix);
 }
 

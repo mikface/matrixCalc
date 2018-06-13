@@ -16,6 +16,7 @@ void Help::print() {
     std::cout << "MERGE <matrix 1 name> <matrix 2 name> => <new matrix name>" << std::endl;
     std::cout << "GEM <matrix name> <new matrix name>" << std::endl;
     std::cout << "DET <matrix name>" << std::endl;
+    std::cout << "RANK <matrix name>" << std::endl;
     std::cout << "EXIT" << std::endl << std::endl;
     std::cout << "Note: Matrix name can be any unique string without whitespace" << std::endl << std::endl;
 }

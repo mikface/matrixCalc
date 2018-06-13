@@ -17,6 +17,7 @@
 #include "../command/SplitCommand.h"
 #include "../command/GaussCommand.h"
 #include "../command/DeterminantCommand.h"
+#include "../command/RankCommand.h"
 
 
 InputHandler::InputHandler(const std::shared_ptr<Calculator> &calcPtr) {
@@ -52,6 +53,8 @@ StateEnum InputHandler::parseCommand() {
         cmd = std::make_unique<GaussCommand>(tokens, calc);
     } else if (command == CommandEnum::DETERMINANT) {
         cmd = std::make_unique<DeterminantCommand>(tokens, calc);
+    } else if (command == CommandEnum::RANK) {
+        cmd = std::make_unique<RankCommand>(tokens, calc);
     } else if (command == CommandEnum::PRINT) {
         cmd = std::make_unique<PrintCommand>(tokens, calc);
     } else if (command == CommandEnum::EXIT) {

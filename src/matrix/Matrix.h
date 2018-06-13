@@ -52,12 +52,25 @@ public:
     float getDeterminant() const;
 
     /**
+     * Get matrix rank
+     * @return rank
+     */
+    unsigned int getRank() const;
+
+    /**
      * Static function for constructing new matrix
      * @return shared pointer to new matrix
      */
     static std::shared_ptr<Matrix>
-    constructMatrix(unsigned int rows, unsigned int columns, std::vector<float> data, bool isGauss = false,
-                    bool negativeDeterminant = false);
+    constructMatrix(unsigned int rows, unsigned int columns, const std::vector<float> &data);
+
+    /**
+     * Static function for constructing new matrix
+     * @return shared pointer to new matrix
+     */
+    static std::shared_ptr<Matrix>
+    constructGaussMatrix(unsigned int rows, unsigned int columns, const std::vector<float> &data,
+                         bool negativeDeterminant = false);
 
 protected:
     /**
@@ -87,6 +100,11 @@ protected:
      * Determines if during Gauss rows were switched (negative determinant issue)
      */
     bool gaussNegativeDeterminant;
+
+    /**
+     * Matrix rank
+     */
+    unsigned int rank;
 };
 
 
