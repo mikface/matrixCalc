@@ -10,6 +10,7 @@ void Help::print() {
     std::cout << "PRINT <matrix name>" << std::endl;
     std::cout << "CALC <new matrix name> = <matrix 1 name> <operation *+-> <matrix 2 name>" << std::endl;
     std::cout << "TRANSPOSE <matrix name> [<new matrix name>]" << std::endl;
+    std::cout << "INVERT <matrix name> [<new matrix name>]" << std::endl;
     std::cout
             << "SPLIT <matrix name> <new matrix width> <new matrix height> => <new matrix name> [starting <starting row> <starting col>]"
             << std::endl;

@@ -18,6 +18,7 @@
 #include "../command/GaussCommand.h"
 #include "../command/DeterminantCommand.h"
 #include "../command/RankCommand.h"
+#include "../command/InvertCommand.h"
 
 
 InputHandler::InputHandler(const std::shared_ptr<Calculator> &calcPtr) {
@@ -45,6 +46,8 @@ StateEnum InputHandler::parseCommand() {
         cmd = std::make_unique<CalcCommand>(tokens, calc);
     } else if (command == CommandEnum::TRANSPOSE) {
         cmd = std::make_unique<TransposeCommand>(tokens, calc);
+    } else if (command == CommandEnum::INVERT) {
+        cmd = std::make_unique<InvertCommand>(tokens, calc);
     } else if (command == CommandEnum::SPLIT) {
         cmd = std::make_unique<SplitCommand>(tokens, calc);
     } else if (command == CommandEnum::MERGE) {

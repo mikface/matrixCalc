@@ -10,6 +10,6 @@ SCAN y0 2 3 -v
 
 PRINT y0
 
-SCAN x0 3 3
+SCAN fault0 3 3
 
-SCAN z0 0 0
+SCAN fault0 0 0

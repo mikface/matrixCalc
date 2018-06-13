@@ -25,3 +25,14 @@ SCAN z2 3 3
 DET z2
 GEM z2 z2-gem
 PRINT z2-gem
+RANK z2
+
+SCAN a2 4 4
+3 2 1 2
+7 5 2 5
+0 0 9 4
+0 0 11 5
+
+PRINT a2
+INVERT a2 a2-inv
+PRINT a2-inv
