@@ -6,6 +6,9 @@
 #ifndef MATRIXCALC_COMMANDENUM_H
 #define MATRIXCALC_COMMANDENUM_H
 
+/**
+ * Supported commands' enum class (not real enum, string used as command id)
+ */
 class CommandEnum {
 public:
     static const std::string SPLIT;

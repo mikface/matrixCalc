@@ -5,7 +5,9 @@
 #ifndef MATRIXCALC_STATEENUM_H
 #define MATRIXCALC_STATEENUM_H
 
-
+/**
+ * Application state enum class (used for switching app)
+ */
 enum class StateEnum {
     Main,
     Exit,

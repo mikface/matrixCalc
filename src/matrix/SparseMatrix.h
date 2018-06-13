@@ -9,14 +9,29 @@
 #include <map>
 #include "Matrix.h"
 
+/**
+ * Matrix class for sparse matrices, data saved as map (rows) of maps (columns => value), memory efficient
+ */
 class SparseMatrix : public Matrix {
 public:
-    SparseMatrix(int rows, int cols, const std::map<unsigned int,std::map<unsigned int, float>> &data);
+    /**
+     * Constructor
+     * @param rows
+     * @param cols
+     * @param data
+     */
+    SparseMatrix(int rows, int cols, const std::map<unsigned int, std::map<unsigned int, float>> &data);
 
 private:
+    /**
+     * @inherit
+     */
     virtual float getAt(unsigned int row, unsigned int column) const;
 
-    std::map<unsigned int,std::map<unsigned int, float>> data;
+    /**
+     * Matrix data
+     */
+    std::map<unsigned int, std::map<unsigned int, float>> data;
 };
 
 

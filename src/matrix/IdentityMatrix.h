@@ -8,11 +8,21 @@
 
 #include "Matrix.h"
 
+/**
+ * Matrix class for Identity special matrix
+ */
 class IdentityMatrix : public Matrix {
 public:
+    /**
+     * Constructor
+     * @param size
+     */
     IdentityMatrix(int size);
 
 private:
+    /**
+     * @inherit
+     */
     virtual float getAt(unsigned int row, unsigned int column) const;
 };
 
