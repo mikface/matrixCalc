@@ -19,7 +19,7 @@ public:
      * @param rhs
      */
     BinaryOperation(std::shared_ptr<Matrix> lhs, std::shared_ptr<Matrix> rhs);
-
+    virtual ~BinaryOperation();
 protected:
     /**
      * Right hand side matrix pointer

@@ -8,3 +8,7 @@
 Operation::Operation(std::shared_ptr<Matrix> lhs) : lhs(lhs) {
 
 }
+
+Operation::~Operation() {
+
+}

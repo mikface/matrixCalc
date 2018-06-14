@@ -19,7 +19,7 @@ public:
      * @param cols
      */
     Matrix(unsigned int rows, unsigned int cols);
-
+    virtual ~Matrix();
     /**
      * Public function to access matrix element
      * @param row

@@ -22,7 +22,7 @@ public:
      * @param calculator
      */
     Command(const std::vector<std::string> &commandTokens, const std::shared_ptr<Calculator> &calculator);
-
+    virtual ~Command();
     /**
      * Performs the command, requires valid command syntax (checked in sanitize() function)
      */

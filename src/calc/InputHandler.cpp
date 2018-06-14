@@ -21,8 +21,7 @@
 #include "../command/InvertCommand.h"
 
 
-InputHandler::InputHandler(const std::shared_ptr<Calculator> &calcPtr) {
-    calc = std::make_shared<Calculator>((*calcPtr));
+InputHandler::InputHandler(const std::shared_ptr<Calculator> &calcPtr) : calc(calcPtr) {
 }
 
 

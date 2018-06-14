@@ -19,7 +19,7 @@ public:
      * @param lhs
      */
     Operation(std::shared_ptr<Matrix> lhs);
-
+    virtual ~Operation();
     /**
      * Performs operation
      * @return new matrix pointer

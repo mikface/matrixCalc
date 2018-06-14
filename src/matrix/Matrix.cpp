@@ -156,3 +156,7 @@ Matrix::constructGaussMatrix(unsigned int rows, unsigned int columns, const std:
     return newMatrix;
 }
 
+Matrix::~Matrix() {
+
+}
+

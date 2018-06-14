@@ -6,3 +6,7 @@
 
 
 BinaryOperation::BinaryOperation(std::shared_ptr<Matrix> lhs, std::shared_ptr<Matrix> rhs) : Operation(lhs), rhs(rhs) {}
+
+BinaryOperation::~BinaryOperation() {
+
+}

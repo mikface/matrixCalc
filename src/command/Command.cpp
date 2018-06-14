@@ -20,3 +20,7 @@ bool Command::syntaxError() const {
     return showSyntaxError;
 }
 
+Command::~Command() {
+
+}
+
