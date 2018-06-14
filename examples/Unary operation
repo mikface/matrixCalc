@@ -36,3 +36,5 @@ SCAN a2 4 4
 PRINT a2
 INVERT a2 a2-inv
 PRINT a2-inv
+
+EXIT

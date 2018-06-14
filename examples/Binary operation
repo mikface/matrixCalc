@@ -31,4 +31,4 @@ PRINT res14
 SPLIT res14 3 3 => res15 starting 1 1
 PRINT res15
 
-
+EXIT

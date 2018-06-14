@@ -13,3 +13,5 @@ PRINT y0
 SCAN fault0 3 3
 
 SCAN fault0 0 0
+
+EXIT
