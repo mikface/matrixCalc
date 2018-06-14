@@ -50,6 +50,7 @@ void ScanCommand::sanitize() {
 }
 
 void ScanCommand::perform() {
+    data = std::vector<float>(rows * columns);
     if (!loadData())
         return;
     newMatrix = Matrix::constructMatrix(rows, columns, data);
@@ -94,7 +95,7 @@ bool ScanCommand::loadData() {
                 return false;
             }
 
-            data.push_back(floatElem);
+            data[row * columns + column] = floatElem;
             column++;
         }
     }

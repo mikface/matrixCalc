@@ -58,8 +58,8 @@ Matrix::constructMatrix(unsigned int rows, unsigned int columns, const std::vect
     std::map<unsigned int, std::map<unsigned int, float>> sparseData;
 
     //COUNTING NON ZERO ELEMENTS FOR SPARSE x DENSE decision
-    for (unsigned int row = 0; row < rows; ++row) {
-        for (unsigned int column = 0; column < rows; ++column) {
+    for (unsigned int row = 0; row < rows; row++) {
+        for (unsigned int column = 0; column < columns; column++) {
             elem = data[row * columns + column];
             if (elem != 0) {
                 sparseData[row].emplace(column, elem);

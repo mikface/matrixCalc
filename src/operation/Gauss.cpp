@@ -10,6 +10,7 @@
 Gauss::Gauss(const std::shared_ptr<Matrix> &lhs) : Operation(lhs) {
     newMatrixRows = lhs->getRows();
     newMatrixColumns = lhs->getColumns();
+    newMatrixData = std::vector<float>(newMatrixRows * newMatrixColumns);
 }
 
 std::shared_ptr<Matrix> Gauss::perform() {
